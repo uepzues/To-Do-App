@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <main>
+      <div class="app-container">
+        <div class="wave-box">
+          <div class="wave -one"></div>
+          <div class="wave -two"></div>
+          <div class="wave -three"></div>
+          <div class="wave -four"></div>
+          <div class="wave -five"></div>
+          <h1 class="title">Things To Do</h1>
+        </div>
+        <div class="app">
+          <form class="app__form" action="main.html" id="form">
+            <img
+              class="edit-still"
+              src="/images/edit-still.svg"
+              alt="edit icon image"
+            />
+            <input type="text" for="form" placeholder="  Do something..." />
+            <a type="button" for="form">
+              <img src="/images/send.svg" alt="send icon button image"
+            /></a>
+          </form>
+          <div class="app__content">
+            <form action="" class="app__content--form" id="task_form">
+              <div class="check"></div>
+              <input type="text" placeholder="  tasks goes here"/>
+              <img src="/images/edit.svg" alt="edit button icon" />
+            </form>
+          </div>
+          <div class="app__status-bar">
+            <p class="task-list"><span class="task-num">0</span> item left</p>
+            <div class="task-sort">
+              <p class="sort-all">all</p>
+              <p class="sort-active">active</p>
+              <p class="complete">complete</p>
+            </div>
+            <img src="/images/delete-all.svg" alt="delete all button image" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

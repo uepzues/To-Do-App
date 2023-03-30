@@ -1,0 +1,20 @@
+{
+  "name": "to-do-app",
+  "version": "1.0.0",
+  "description": "A To Do App",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --experimental-json-modules app.js & npm run "
+  },
+  "author": "uepzues",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

@@ -1,0 +1,60 @@
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-90px);
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+  
+    &__date {
+      align-self: flex-end;
+      font-size: 1.5rem;
+      color: $text-color;
+      margin-right: 1rem;
+    }
+  
+    &__form {
+      height: 50px;
+      margin-bottom: 1rem;
+  
+      & > button {
+        background: none;
+        border: none;
+        display: flex;
+        align-items: center;
+  
+        & > img {
+          &:hover {
+            transform: translateY(-1px);
+            filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.3));
+          }
+          &:active {
+            scale: 0.8;
+          }
+        }
+      }
+  
+      & input {
+        border: none;
+        border-bottom: 2px solid $underline;
+        width: 100%;
+        height: 30px;
+        margin: 5px 10px;
+        background-color: $bg-input;
+        font-family: $font-family;
+        font-size: 1.5rem;
+        padding: 0 2rem;
+        color: #116219;
+  
+        &::placeholder {
+          opacity: 0.3;
+          font-family: $font-family;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  

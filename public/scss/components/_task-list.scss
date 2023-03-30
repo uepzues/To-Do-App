@@ -1,0 +1,67 @@
+.app__content {
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+
+  &-list {
+    width: 100%;
+
+    & > li {
+      width: 100%;
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+
+      & .check {
+        opacity: 0.5;
+        width: 20px;
+        height: 20px;
+        margin-left: 1rem;
+
+        & input::placeholder {
+          opacity: 0.3;
+          font-family: $font-family;
+          font-size: 16px;
+          padding: 2rem;
+        }
+
+        &:checked + p {
+          color: green;
+          text-decoration: line-through;
+          text-decoration-color: #a683e3;
+        }
+      }
+
+      & p {
+        width: 100%;
+        background-color: $bg-input;
+        border-bottom: 2px solid $underline;
+        height: 30px;
+        margin: 5px 10px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: last baseline;
+        color: $text-color;
+        padding: 0 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      & > img {
+        margin-right: 1rem;
+
+        &:hover {
+          scale: 1.1;
+          // filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.3));
+        }
+        &:active {
+          scale: 0.8;
+        }
+      }
+    }
+  }
+}

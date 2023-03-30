@@ -1,0 +1,55 @@
+.app__status-bar {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  height: 50px;
+  color: #116219;
+
+  & .task-list {
+    font-size: 1.5rem;
+    padding-left: 1rem;
+
+    & .task-num {
+      font-size: inherit;
+    }
+  }
+
+  & .task-sort {
+    display: flex;
+    transform: translateX(-20%);
+
+
+    & > p {
+      padding: 0 3%;
+      font-size: 1.5rem;
+
+      &:nth-child(1) {
+        color: $text-color;
+      }
+    }
+  }
+
+  & .span-wrap {
+    position: relative;
+
+    & span {
+      position: absolute;
+      top: 25px;
+      left: -12px;
+      text-transform: capitalize;
+    }
+  }
+
+  & .del-all {
+    padding-right: 1rem;
+    width: 28px;
+    height: 28px;
+
+    &:hover {
+      filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.3));
+    }
+    &:active {
+      scale: 0.8;
+    }
+  }
+}
