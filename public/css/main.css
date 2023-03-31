@@ -97,16 +97,6 @@ img {
   background-color: #9dff00;
 }
 
-.title {
-  text-align: center;
-  transform: translateY(30%);
-  width: 100%;
-  z-index: 1;
-  color: #116219;
-  font-size: 4em;
-  text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
 @keyframes drift {
   from {
     transform: rotate(0deg);
@@ -120,10 +110,19 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateY(-90px);
+  transform: translateY(-170px);
   max-width: 600px;
   margin: auto;
   border-radius: 10px;
+}
+.app .title {
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+  color: #116219;
+  font-size: 4em;
+  font-family: Alkatra, sans-serif;
+  text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
 }
 .app__date {
   align-self: flex-end;

@@ -1,13 +1,25 @@
 
+
 .app {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateY(-90px);
+    transform: translateY(-170px);
     max-width: 600px;
     margin: auto;
     border-radius: 10px;
+
+    .title {
+      text-align: center;
+      // transform: translateY(-90%);
+      width: 100%;
+      z-index: 1;
+      color: #116219;
+      font-size: 4em;
+      font-family: $font-family;
+      text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
+    }
   
     &__date {
       align-self: flex-end;
