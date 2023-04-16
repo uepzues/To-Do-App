@@ -83,6 +83,12 @@ app.post("/delete", (req, res) => {
     .catch((err) => console.log(err));
 
   res.redirect("/");
+  } else {
+    List.findOneAndUpdate(
+      { name: listName },
+      { $pull: { items: { _id: checkboxValue } } }
+    ).then(res.redirect("/" + listName));
+  }
 });
 
 app.listen(port, () => {
