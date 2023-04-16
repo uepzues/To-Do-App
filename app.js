@@ -1,6 +1,7 @@
 import express from "express";
 import dateFunc from "./public/js/date.js";
 import mongoose from "mongoose";
+import _ from "lodash";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,7 +10,9 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", `ejs`);
 
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB");
+mongoose.connect(
+  "mongodb+srv://uepzues:sdWkzEvqkb234xh@zuesuep.8bkzlbx.mongodb.net/?retryWrites=true&w=majority"
+);
 
 const itemsSchema = {
   name: String,
@@ -59,19 +62,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:customListName", (req, res) => {
-  const customListName = req.params.customListName;
+  const customListName = _.capitalize(req.params.customListName);
 
   List.findOne({ name: customListName })
     .then((foundList) => {
       if (foundList) {
-        console.log("Exist!");
+        // console.log("Exist!");
         res.render("list", {
           listTitle: foundList.name,
           kindOfDay: dateFunc,
           toDo: foundList.items,
         });
       } else {
-        console.log("Doesn't Exists!");
+        // console.log("Doesn't Exists!");
         const list = new List({
           name: customListName,
           items: defaultItems,
