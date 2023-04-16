@@ -1,6 +1,6 @@
 {
   "name": "to-do-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A To Do App",
   "type": "module",
   "main": "app.js",
@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

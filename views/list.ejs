@@ -1,52 +1,57 @@
 <%- include("header") %>
-    <main>
-      <div class="app-container">
-       
-        <%- include("heading.ejs") %>
+<main>
+  <div class="app-container">
+    <%- include("heading.ejs") %>
 
-        <section class="app">
-          <h1 class="title">Things To Do</h1>
+    <section class="app">
+      <h1 class="title">Things To Do</h1>
 
-          <div class="app__date"><%- kindOfDay %></div>
-          <form class="app__form" action="/" id="todoform" method="post">
-            <img
-              class="edit-still"
-              src="/images/edit-still.svg"
-              alt="edit icon image"
-            />
-            <input
-              type="text"
-              id="todo"
-              name="newTask"
-              placeholder="Do something..."
-              autocomplete="off"
-            />
-            <button type="submit" for="todoForm">
-              <img src="/images/send.svg" alt="send icon button image" />
-            </button>
-          </form>
-            <section class="app__content">
-              <ul class="app__content-list">
-                <% for(let i in toDo) {%>
-                <li>
-                  <input class="check" type="checkbox" name="checkbox"></input>
-                  <p><%= toDo[i] %></p>
-                  <img src="/images/edit.svg" alt="edit button icon" />
-                </li>
-                <% } %>
-              </ul>
-            </section>
-          <section class="app__status-bar">
-            <p class="task-list"><span class="task-num">0</span> item left</p>
-            <div class="task-sort">
-              <p class="sort-all">all</p>
-              <p class="sort-active">active</p>
-              <p class="complete">complete</p>
-            </div>
-            <span class="span-wrap">
-            <span>delete all</span><img class="del-all" src="/images/delete-all.svg" alt="delete all button image" /></span>
-          </section>
-        </section>
-      </div>
-    </main>
-  <%- include("footer.ejs") %>
+      <div class="app__date"><%- kindOfDay %></div>
+      <form class="app__form" action="/" id="todoform" method="post">
+        <img
+          class="edit-still"
+          src="/images/edit-still.svg"
+          alt="edit icon image"
+        />
+        <input
+          type="text"
+          id="todo"
+          name="newTask"
+          placeholder="Do something..."
+          autocomplete="off"
+        />
+        <button type="submit" for="todoForm">
+          <img src="/images/send.svg" alt="send icon button image" />
+        </button>
+      </form>
+      <section class="app__content">
+        <ul class="app__content-list">
+          <% toDo.forEach(item => { %>
+          <li>
+            <input class="check" type="checkbox" name="checkbox" />
+            <p><%= item.name %></p>
+            <div class="hidden"></div>
+            <img src="/images/edit.svg" alt="edit button icon" />
+          </li>
+          <% }); %>
+        </ul>
+      </section>
+      <section class="app__status-bar">
+        <p class="task-list"><span class="task-num">0</span> item left</p>
+        <div class="task-sort">
+          <p class="sort-all">all</p>
+          <p class="sort-active">active</p>
+          <p class="complete">complete</p>
+        </div>
+        <span class="span-wrap">
+          <span>delete all</span
+          ><img
+            class="del-all"
+            src="/images/delete-all.svg"
+            alt="delete all button image"
+        /></span>
+      </section>
+    </section>
+  </div>
+</main>
+<%- include("footer.ejs") %>

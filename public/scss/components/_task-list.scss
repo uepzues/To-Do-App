@@ -15,6 +15,23 @@
       justify-content: center;
       text-align: left;
 
+      & > .hidden {
+        display: none;
+      }
+
+      & > div {
+        display: block;
+        background-image: url(/images/delete-one.svg);
+        background-repeat: no-repeat;
+        width: 26px;
+        height: 20px;
+        margin-right: 10px;
+
+        &:hover {
+          scale: 1.1;
+        }
+      }
+
       & .check {
         opacity: 0.5;
         width: 20px;
@@ -29,7 +46,7 @@
         }
 
         &:checked + p {
-          color: green;
+          color: #bbdebb;
           text-decoration: line-through;
           text-decoration-color: #a683e3;
         }

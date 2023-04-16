@@ -1,6 +1,6 @@
 
 // exports.module(getDate);
-export {dateFunc};
+// export {dateFunc};
 const lang = "en-GB";
 
 let getDate = () => {
@@ -28,3 +28,5 @@ let getDay = () => {
   }
 
   const dateFunc = [getDate(), getDay()];
+
+  export default dateFunc;

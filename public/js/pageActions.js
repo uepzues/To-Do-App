@@ -1,13 +1,16 @@
 let btn = document.querySelectorAll(".app__content-list > li img");
-const li = document.querySelectorAll(".app__content-list > li");
+let li = document.querySelectorAll(".app__content-list > li");
+const offreload = document.querySelector(".app__form > button");
+const para = document.querySelectorAll("li > p");
+let delBtn = document.querySelectorAll("li > div");
 
-let click = () => {
-  for (let i in btn) {
-    btn[i].addEventListener("click", () => {
-        li[i].remove();
-      alert("hello");
+function click() {
+  btn.forEach((abtn, index) => {
+    abtn.addEventListener("click", () => {
+      console.log(index);
+      delBtn[index].classList.toggle("hidden");
     });
-  }
-};
+  });
+}
 
 click();
