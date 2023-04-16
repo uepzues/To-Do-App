@@ -28,6 +28,13 @@ const item3 = new Item({
 });
 const defaultItems = [item1, item2, item3];
 
+const listSchema = {
+  name: String,
+  items: [itemsSchema],
+};
+
+const List = mongoose.model("List", listSchema);
+
 let items;
 
 async function itemList() {
@@ -48,11 +55,34 @@ await itemList();
 
 //routes
 app.get("/", (req, res) => {
-  res.render("list", { kindOfDay: dateFunc, toDo: items });
+  res.render("list", { listTitle: "Today", kindOfDay: dateFunc, toDo: items });
 });
 
 app.get("/:customListName", (req, res) => {
-  console.log(req.params.customListName);
+  const customListName = req.params.customListName;
+
+  List.findOne({ name: customListName })
+    .then((foundList) => {
+      if (foundList) {
+        console.log("Exist!");
+        res.render("list", {
+          listTitle: foundList.name,
+          kindOfDay: dateFunc,
+          toDo: foundList.items,
+        });
+      } else {
+        console.log("Doesn't Exists!");
+        const list = new List({
+          name: customListName,
+          items: defaultItems,
+        });
+        list.save();
+        res.redirect("/" + customListName);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get("/about", (req, res) => {
@@ -61,28 +91,41 @@ app.get("/about", (req, res) => {
 
 app.post("/", (req, res) => {
   const task = req.body.newTask;
+  const listName = req.body.list;
 
   const item = new Item({
     name: task,
   });
 
-  item.save();
-  itemList();
-  console.log("Added Item");
-
-  res.redirect("/");
+  if (listName === "Today") {
+    item.save();
+    itemList();
+    res.redirect("/");
+  } else {
+    List.findOne({ name: listName })
+      .then((foundList) => {
+        foundList.items.push(item);
+        foundList.save();
+        res.redirect("/" + listName);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 });
 
 app.post("/delete", (req, res) => {
   const checkboxValue = req.body.checkbox;
+  const listName = req.body.listName;
 
-  Item.findByIdAndRemove(checkboxValue)
-    .exec()
-    .then(itemList())
-    .then(console.log("Deleted Item"))
-    .catch((err) => console.log(err));
+  if (listName === "Today") {
+    Item.findByIdAndRemove(checkboxValue)
+      // .exec()
+      .then(itemList())
+      .then(console.log("Deleted Item"))
+      .catch((err) => console.log(err));
 
-  res.redirect("/");
+    res.redirect("/");
   } else {
     List.findOneAndUpdate(
       { name: listName },

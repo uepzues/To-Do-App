@@ -4,7 +4,7 @@
     <%- include("heading.ejs") %>
 
     <section class="app">
-      <h1 class="title">Things To Do</h1>
+      <h1 class="title"><%= listTitle %></h1>
 
       <div class="app__date"><%- kindOfDay[0] %></div>
       <form class="app__form" action="/" id="todoform" method="post">
@@ -19,7 +19,12 @@
           name="newTask"
           placeholder="Do something..."
         />
-        <button type="submit" for="todoForm">
+        <button
+          type="submit"
+          for="todoForm"
+          value="<%= listTitle %>"
+          name="list"
+        >
           <img src="/images/send.svg" alt="send icon button image" />
         </button>
       </form>
