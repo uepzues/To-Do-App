@@ -26,14 +26,14 @@
       </form>
       <section class="app__content">
         <ul class="app__content-list">
-          <% toDo.forEach(item => { %>
+          <% for(let i in toDo) { %>
           <li>
             <input class="check" type="checkbox" name="checkbox" />
-            <p><%= item.name %></p>
+            <p><%= toDo[i].name %></p>
             <div class="hidden"></div>
             <img src="/images/edit.svg" alt="edit button icon" />
           </li>
-          <% }); %>
+          <% }; %>
         </ul>
       </section>
       <section class="app__status-bar">
