@@ -7,28 +7,46 @@
   &-list {
     width: 100%;
 
-    & > li {
-      width: 100%;
-      list-style-type: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: left;
+    & form {
+      & li {
+        width: 100%;
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
 
-      & > .hidden {
-        display: none;
-      }
+        // & > .hidden {
+        //   display: none;
+        // }
 
-      & > div {
-        display: block;
-        background-image: url(/images/delete-one.svg);
-        background-repeat: no-repeat;
-        width: 26px;
-        height: 20px;
-        margin-right: 10px;
+        & > div {
+          display: block;
+          background-image: url(/images/delete-one.svg);
+          background-repeat: no-repeat;
+          width: 26px;
+          height: 20px;
+          margin-right: 10px;
 
-        &:hover {
-          scale: 1.1;
+          // &:hover {
+          //   scale: 1.1;
+          // }
+
+          // &:active {
+          //   scale: 0.8;
+          // }
+        }
+
+        & > img {
+          margin-right: 1rem;
+
+          &:hover {
+            scale: 1.1;
+            // filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.3));
+          }
+          &:active {
+            scale: 0.8;
+          }
         }
       }
 
@@ -67,18 +85,28 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
-      & > img {
-        margin-right: 1rem;
-
-        &:hover {
-          scale: 1.1;
-          // filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.3));
-        }
-        &:active {
-          scale: 0.8;
-        }
-      }
     }
+  }
+}
+.footer {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #21af21;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  & a,
+  & a:link,
+  & a:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  &:hover {
+    color:#78f478;
+    scale: 1.1;
+    text-shadow: 0 2px 2px #000;
   }
 }

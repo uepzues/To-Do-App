@@ -20,48 +20,68 @@ const Item = mongoose.model("Item", itemsSchema);
 const item1 = new Item({
   name: "Welcome to your todolist!",
 });
-
 const item2 = new Item({
   name: "Hit the send button to add a new item",
 });
-
 const item3 = new Item({
   name: "<-- Hit this to delete an item",
 });
-
 const defaultItems = [item1, item2, item3];
 
 let items;
 
 async function itemList() {
-  Item.find({})
-    .exec()
-    .then((foundItems) => {
-      if (foundItems.length === 0) {
-        Item.insertMany(defaultItems);
-      } else {
-        items = foundItems;
-      }
-    })
-    .catch((err) => console.log(err));
+  try {
+    const foundItems = await Item.find({});
+    if (foundItems.length === 0) {
+      await Item.insertMany(defaultItems);
+      items = defaultItems;
+    } else {
+      items = foundItems;
+    }
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 await itemList();
 
-// console.log(items);
 //routes
+app.get("/", (req, res) => {
+  res.render("list", { kindOfDay: dateFunc, toDo: items });
+});
+
+app.get("/:customListName", (req, res) => {
+  console.log(req.params.customListName);
+});
+
 app.get("/about", (req, res) => {
   res.render("about.ejs");
 });
 
-app.get("/", (req, res) => {
-  res.render("list", { kindOfDay: dateFunc[0], toDo: items });
-});
-
 app.post("/", (req, res) => {
   const task = req.body.newTask;
-  
-  
+
+  const item = new Item({
+    name: task,
+  });
+
+  item.save();
+  itemList();
+  console.log("Added Item");
+
+  res.redirect("/");
+});
+
+app.post("/delete", (req, res) => {
+  const checkboxValue = req.body.checkbox;
+
+  Item.findByIdAndRemove(checkboxValue)
+    .exec()
+    .then(itemList())
+    .then(console.log("Deleted Item"))
+    .catch((err) => console.log(err));
+
   res.redirect("/");
 });
 

@@ -6,7 +6,7 @@
     <section class="app">
       <h1 class="title">Things To Do</h1>
 
-      <div class="app__date"><%- kindOfDay %></div>
+      <div class="app__date"><%- kindOfDay[0] %></div>
       <form class="app__form" action="/" id="todoform" method="post">
         <img
           class="edit-still"
@@ -18,7 +18,6 @@
           id="todo"
           name="newTask"
           placeholder="Do something..."
-          autocomplete="off"
         />
         <button type="submit" for="todoForm">
           <img src="/images/send.svg" alt="send icon button image" />
@@ -27,12 +26,20 @@
       <section class="app__content">
         <ul class="app__content-list">
           <% for(let i in toDo) { %>
-          <li>
-            <input class="check" type="checkbox" name="checkbox" />
-            <p><%= toDo[i].name %></p>
-            <div class="hidden"></div>
-            <img src="/images/edit.svg" alt="edit button icon" />
-          </li>
+          <form class="taskList" action="/delete" method="post">
+            <li>
+              <input
+                class="check"
+                type="checkbox"
+                name="checkbox"
+                onChange="this.form.submit()"
+                value="<%= toDo[i]._id %>"
+              />
+              <p><%= toDo[i].name %></p>
+              <!-- <div class="hidden"></div> -->
+              <img src="/images/edit.svg" alt="edit button icon" />
+            </li>
+          </form>
           <% }; %>
         </ul>
       </section>
@@ -53,5 +60,9 @@
       </section>
     </section>
   </div>
+  <p class="footer">
+    &copy; <a href="http://github.com/uepzues">uepzues</a> <%= kindOfDay[2] %>
+  </p>
 </main>
+
 <%- include("footer.ejs") %>

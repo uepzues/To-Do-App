@@ -174,7 +174,7 @@ img {
 .app__content-list {
   width: 100%;
 }
-.app__content-list > li {
+.app__content-list form li {
   width: 100%;
   list-style-type: none;
   display: flex;
@@ -182,10 +182,7 @@ img {
   justify-content: center;
   text-align: left;
 }
-.app__content-list > li > .hidden {
-  display: none;
-}
-.app__content-list > li > div {
+.app__content-list form li > div {
   display: block;
   background-image: url(/images/delete-one.svg);
   background-repeat: no-repeat;
@@ -193,27 +190,33 @@ img {
   height: 20px;
   margin-right: 10px;
 }
-.app__content-list > li > div:hover {
+.app__content-list form li > img {
+  margin-right: 1rem;
+}
+.app__content-list form li > img:hover {
   scale: 1.1;
 }
-.app__content-list > li .check {
+.app__content-list form li > img:active {
+  scale: 0.8;
+}
+.app__content-list form .check {
   opacity: 0.5;
   width: 20px;
   height: 20px;
   margin-left: 1rem;
 }
-.app__content-list > li .check input::placeholder {
+.app__content-list form .check input::placeholder {
   opacity: 0.3;
   font-family: Alkatra, sans-serif;
   font-size: 16px;
   padding: 2rem;
 }
-.app__content-list > li .check:checked + p {
+.app__content-list form .check:checked + p {
   color: #bbdebb;
   text-decoration: line-through;
   text-decoration-color: #a683e3;
 }
-.app__content-list > li p {
+.app__content-list form p {
   width: 100%;
   background-color: #cffbcf;
   border-bottom: 2px solid #96cc96;
@@ -228,14 +231,24 @@ img {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.app__content-list > li > img {
-  margin-right: 1rem;
+
+.footer {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #21af21;
+  cursor: pointer;
+  transition: all 0.5s;
 }
-.app__content-list > li > img:hover {
+.footer a, .footer a:link, .footer a:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+}
+.footer:hover {
+  color: #78f478;
   scale: 1.1;
-}
-.app__content-list > li > img:active {
-  scale: 0.8;
+  text-shadow: 0 2px 2px #000;
 }
 
 .app__status-bar {
@@ -278,10 +291,10 @@ img {
   height: 28px;
 }
 .app__status-bar .del-all:hover {
-  filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.2));
 }
 .app__status-bar .del-all:active {
-  scale: 0.8;
+  scale: 0.9;
 }
 
 @media (max-width: 601px) {

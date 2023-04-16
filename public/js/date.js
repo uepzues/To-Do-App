@@ -1,4 +1,3 @@
-
 // exports.module(getDate);
 // export {dateFunc};
 const lang = "en-GB";
@@ -14,19 +13,24 @@ let getDate = () => {
 
   const date = today.toLocaleDateString(lang, options);
   return date;
-
-}
+};
 
 let getDay = () => {
-    const today = new Date();  
-    const options = {
-      weekday: "long",
-    };
-  
-    const date = today.toLocaleDateString(lang, options);
-    return date;
-  }
+  const today = new Date();
+  const options = {
+    weekday: "long",
+  };
 
-  const dateFunc = [getDate(), getDay()];
+  const date = today.toLocaleDateString(lang, options);
+  return date;
+};
 
-  export default dateFunc;
+let getYear = () => {
+  const year = new Date();
+  const thisYear = year.getFullYear();
+
+  return thisYear;
+};
+const dateFunc = [getDate(), getDay(), getYear()];
+
+export default dateFunc;
