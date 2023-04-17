@@ -5,20 +5,27 @@ import _ from "lodash";
 
 const app = express();
 const port = process.env.PORT || 3000;
+const uri = "mongodb://127.0.0.1:27017/todolistDB";
+// "mongodb+srv://uepzues:sdWkzEvqkb234xh@zuesuep.8bkzlbx.mongodb.net/todolistDB";
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", `ejs`);
 
-mongoose.connect(
-  "mongodb+srv://uepzues:sdWkzEvqkb234xh@zuesuep.8bkzlbx.mongodb.net/?retryWrites=true&w=majority"
-);
+mongoose.connect(uri);
 
+
+//schema
 const itemsSchema = {
   name: String,
 };
+const listSchema = {
+  name: String,
+  items: [itemsSchema],
+};
 
 const Item = mongoose.model("Item", itemsSchema);
+const List = mongoose.model("List", listSchema);
 
 const item1 = new Item({
   name: "Welcome to your todolist!",
@@ -30,13 +37,6 @@ const item3 = new Item({
   name: "<-- Hit this to delete an item",
 });
 const defaultItems = [item1, item2, item3];
-
-const listSchema = {
-  name: String,
-  items: [itemsSchema],
-};
-
-const List = mongoose.model("List", listSchema);
 
 let items;
 
