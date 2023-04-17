@@ -3,14 +3,15 @@
   "version": "2.0.0",
   "description": "A To Do App",
   "type": "module",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon --experimental-json-modules app.js & npm run "
+    "dev": "nodemon --experimental-json-modules index.js & npm run "
   },
   "author": "uepzues",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "lodash": "^4.17.21",
