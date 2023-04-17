@@ -66,7 +66,7 @@ function itemList() {
     });
 }
 
-await itemList();
+itemList();
 
 //routes
 app.get("/", (req, res) => {
