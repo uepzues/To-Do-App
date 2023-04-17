@@ -13,18 +13,16 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", `ejs`);
 
-mongoose.connect(process.env.MONGO_URI);
-
-// mongoose.set("strictQuery", false);
-// const connectDB = async () => {
-//   try {
-//     const conn = await mongoose.connect(process.env.MONGO_URI);
-//     console.log(`MongoDB Connected: ${conn.connection.host}`);
-//   } catch (err) {
-//     console.log(err);
-//     // process.exit(1);
-//   }
-// };
+mongoose.set("strictQuery", false);
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+};
 
 //schema
 const itemsSchema = {
@@ -51,18 +49,21 @@ const defaultItems = [item1, item2, item3];
 
 let items;
 
-async function itemList() {
-  try {
-    const foundItems = await Item.find({});
-    if (foundItems.length === 0) {
-      await Item.insertMany(defaultItems);
-      items = defaultItems;
-    } else {
-      items = foundItems;
-    }
-  } catch (err) {
-    console.log(err);
-  }
+function itemList() {
+  Item.find({})
+    .then((foundItems) => {
+      if (foundItems.length === 0) {
+        return Item.insertMany(defaultItems);
+      } else {
+        return foundItems;
+      }
+    })
+    .then((result) => {
+      items = result;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 await itemList();
@@ -134,7 +135,7 @@ app.post("/delete", (req, res) => {
 
   if (listName === "Today") {
     Item.findByIdAndRemove(checkboxValue)
-      // .exec()
+      .exec()
       .then(itemList())
       .then(console.log("Deleted Item"))
       .catch((err) => console.log(err));
@@ -148,12 +149,8 @@ app.post("/delete", (req, res) => {
   }
 });
 
-// connectDB().then(() => {
-//   app.listen(port, () => {
-//     console.log(`Server started on ${port}`);
-//   });
-// });
-
-app.listen(port, () => {
-  console.log(`Server started on ${port}`);
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`Server started on ${port}`);
+  });
 });
