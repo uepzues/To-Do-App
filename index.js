@@ -50,16 +50,13 @@ const defaultItems = [item1, item2, item3];
 let items;
 
 function itemList() {
-  Item.find({})
+  return Item.find({})
     .then((foundItems) => {
       if (foundItems.length === 0) {
         return Item.insertMany(defaultItems);
       } else {
         return foundItems;
       }
-    })
-    .then((result) => {
-      items = result;
     })
     .catch((err) => {
       console.log(err);
@@ -70,7 +67,18 @@ itemList();
 
 //routes
 app.get("/", (req, res) => {
-  res.render("list", { listTitle: "Today", kindOfDay: dateFunc, toDo: items });
+  itemList()
+    .then((result) => {
+      items = result;
+      res.render("list", {
+        listTitle: "Today",
+        kindOfDay: dateFunc,
+        toDo: items,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get("/:customListName", (req, res) => {
@@ -100,9 +108,9 @@ app.get("/:customListName", (req, res) => {
     });
 });
 
-app.get("/about", (req, res) => {
-  res.render("about.ejs");
-});
+// app.get("/about", (req, res) => {
+//   res.render("about.ejs");
+// });
 
 app.post("/", (req, res) => {
   const task = req.body.newTask;
@@ -113,16 +121,18 @@ app.post("/", (req, res) => {
   });
 
   if (listName === "Today") {
-    item.save();
-    itemList();
-    res.redirect("/");
+    item
+      .save()
+      // .then(()=> itemList())
+      .then(() => res.redirect("/"))
+      .catch((err) => console.log(err));
   } else {
     List.findOne({ name: listName })
       .then((foundList) => {
         foundList.items.push(item);
-        foundList.save();
-        res.redirect("/" + listName);
+        return foundList.save();
       })
+      .then(() => res.redirect("/" + listName))
       .catch((err) => {
         console.log(err);
       });
